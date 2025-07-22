@@ -73,27 +73,5 @@ router.post('/', async (req, res) => {
 });
 
 
-// router.post("/", async (req, res) => {
-//   // Hard-coded query object
-//   let fixedQueryObject = {
-//     country: "us",
-//     q: "news",
-//   };
-
-//   // Add apiKey to query object
-//   let queryObject = addApiKey(fixedQueryObject);
-
-//   // Create URL from query object
-//   let url = createUrlFromQueryObject(queryObject);
-
-//   // Fetch news articles data from API
-//   let newsArticles = await fetchData(url);
-
-//   // Send fetched data as response
-//   res.send(newsArticles);
-// });
-
-
-
-
+// Export the router to be used in the main app
 export default router;
