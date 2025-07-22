@@ -63,25 +63,36 @@ router.get("/", async (req, res) => {
   res.send(newsArticles);
 });
 
-router.post("/", async (req, res) => {
-  // Hard-coded query object
-  let fixedQueryObject = {
-    country: "us",
-    q: "news",
-  };
-
-  // Add apiKey to query object
-  let queryObject = addApiKey(fixedQueryObject);
-
-  // Create URL from query object
-  let url = createUrlFromQueryObject(queryObject);
-
-  // Fetch news articles data from API
+// POST /news - accepts queryObject from request body
+router.post('/', async (req, res) => {
+  const query = req.body;   // get query object from POST request body
+  let queryObjectWithApiKey = addApiKey(query);
+  let url = createUrlFromQueryObject(queryObjectWithApiKey);
   let newsArticles = await fetchData(url);
-
-  // Send fetched data as response
   res.send(newsArticles);
 });
+
+
+// router.post("/", async (req, res) => {
+//   // Hard-coded query object
+//   let fixedQueryObject = {
+//     country: "us",
+//     q: "news",
+//   };
+
+//   // Add apiKey to query object
+//   let queryObject = addApiKey(fixedQueryObject);
+
+//   // Create URL from query object
+//   let url = createUrlFromQueryObject(queryObject);
+
+//   // Fetch news articles data from API
+//   let newsArticles = await fetchData(url);
+
+//   // Send fetched data as response
+//   res.send(newsArticles);
+// });
+
 
 
 
