@@ -24,9 +24,37 @@ router.get('/', async (req, res) => {
   }
 });
 
+// POST /users/authenticate
+router.post('/authenticate', async (req, res) => {
+  try {
+    const loginCredentials = req.body;
+    const { user, password } = loginCredentials;
 
-router.post('/', async (req, res) => {
-    res.send("POST called");  
+    if (!user || !password) {
+      return res.status(400).json({ error: "Missing username or password" });
+    }
+
+    const db = client.db(dbName);
+    const collection = db.collection(collectionName);
+
+    const existingUser = await collection.findOne({ user: user });
+
+    if (!existingUser) {
+      return res.status(401).json({ error: "Unauthorized - user not found" });
+    }
+
+    if (existingUser.password === password) {
+      return res.status(200).json({ message: "Authentication successful" });
+    } else {
+      return res.status(401).json({ error: "Unauthorized - incorrect password" });
+    }
+  } catch (err) {
+    console.error("Error in authentication:", err);
+    res.status(500).json({ error: "Internal Server Error" });
+  }
 });
+// router.post('/', async (req, res) => {
+//     res.send("POST called");  
+// });
 
 export default router;
