@@ -1,10 +1,9 @@
 import { QueryForm } from './QueryForm';
 import { Articles } from './Articles';
 import { SavedQueries } from './SavedQueries';
+import { LoginForm } from './LoginForm';
 import { useState, useEffect } from 'react';
 import { exampleQuery, exampleData } from './data';
-import { LoginForm } from './LoginForm';
-
 
 export function NewsReader() {
   // Query and news data state
@@ -94,49 +93,36 @@ export function NewsReader() {
     }
   }
 
+  // Method to check if current user matches given username
+  function currentUserMatches(user) {
+    return currentUser?.user === user;
+  }
+
   // Handler for selecting a saved query
   function onSavedQuerySelect(selectedQuery) {
     setQueryFormObject(selectedQuery);
     setQuery(selectedQuery);
   }
 
-function currentUserMatches(user) {
-  if (currentUser) {
-    if (currentUser.user) {
-      if (currentUser.user === user) {
-        return true;
-      }
+  // Handler for submitting a new query with guest user restrictions
+  function onFormSubmit(queryObject) {
+    if (currentUser === null) {
+      alert("Log in if you want to create new queries!");
+      return;
     }
-  }
-  return false;
-}
-
-  // Handler for submitting a new query
- function onFormSubmit(queryObject) {
-  if (currentUser === null) {
-    alert("Log in if you want to create new queries!");
-    return;
-  }
-  if (savedQueries.length >= 3 && currentUserMatches("guest")) {
-    alert("guest users cannot submit new queries once saved query count is 3 or greater!");
-    return;
-  }
-
-  let newSavedQueries = [];
-  newSavedQueries.push(queryObject);
-
-  for (let query of savedQueries) {
-    if (query.queryName !== queryObject.queryName) {
-      newSavedQueries.push(query);
+    if (savedQueries.length >= 3 && currentUserMatches("guest")) {
+      alert("guest users cannot submit new queries once saved query count is 3 or greater!");
+      return;
     }
+
+    const filteredQueries = savedQueries.filter(q => q.queryName !== queryObject.queryName);
+    const newSavedQueries = [queryObject, ...filteredQueries];
+
+    console.log(JSON.stringify(newSavedQueries));
+    saveQueryList(newSavedQueries);
+    setSavedQueries(newSavedQueries);
+    setQuery(queryObject);
   }
-
-  console.log(JSON.stringify(newSavedQueries));
-  saveQueryList(newSavedQueries);
-  setSavedQueries(newSavedQueries);
-  setQuery(queryObject);
-}
-
 
   // Fetch news articles from backend
   async function getNews(queryObject) {
@@ -166,49 +152,49 @@ function currentUserMatches(user) {
     }
   }
 
- return (
-  <div>
+  return (
     <div>
-      <section className="parent">
+      <div>
+        <section className="parent">
 
-        {/* Login form component */}
-        <LoginForm
-          currentUser={currentUser}
-          credentials={credentials}
-          setCredentials={setCredentials}
-          login={login}
-        />
-
-        {/* Query Form */}
-        <div className="box">
-          <span className='title'>Query Form</span>
-          <QueryForm
+          {/* Login form component */}
+          <LoginForm
             currentUser={currentUser}
-            setFormObject={setQueryFormObject}
-            formObject={queryFormObject}
-            submitToParent={onFormSubmit}
+            credentials={credentials}
+            setCredentials={setCredentials}
+            login={login}
           />
-        </div>
 
-        {/* Saved Queries */}
-        <div className="box">
-          <span className='title'>Saved Queries</span>
-          <SavedQueries
-            savedQueries={savedQueries}
-            selectedQueryName={query.queryName}
-            onQuerySelect={onSavedQuerySelect}
-          />
-        </div>
+          {/* Query Form */}
+          <div className="box">
+            <h2 className="section-title">Query Form</h2>
+            <QueryForm
+              currentUser={currentUser}
+              setFormObject={setQueryFormObject}
+              formObject={queryFormObject}
+              submitToParent={onFormSubmit}
+            />
+          </div>
 
-        {/* Articles List */}
-        <div className="box">
-          <span className='title'>Articles List</span>
-          <Articles query={query} data={data} />
-        </div>
+          {/* Saved Queries */}
+          <div className="box">
+            <h2 className="section-title">Saved Queries</h2>
+            <SavedQueries
+              savedQueries={savedQueries}
+              selectedQueryName={query.queryName}
+              onQuerySelect={onSavedQuerySelect}
+            />
+          </div>
 
-      </section>
+          {/* Articles List */}
+          <div className="box">
+            <h2 className="section-title">Articles List</h2>
+            <p><strong>Query:</strong> {query.q || "(no query)"}</p>
+            <Articles query={query} data={data} />
+          </div>
+
+        </section>
+      </div>
     </div>
-  </div>
-);
-
+  );
 }
