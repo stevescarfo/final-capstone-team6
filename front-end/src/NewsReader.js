@@ -230,17 +230,21 @@ export function NewsReader() {
           {/* Articles List */}
           <div className="box articles-container">
             <h2 className="section-title sticky-title">Articles List</h2>
+            {currentUser && (
             <p>
               <strong>Query:</strong> {query.q || "(no query)"}
             </p>
+            )}
 
             {/* Query Details toggle button */}
-            <button
-              onClick={() => setShowQueryDetails(!showQueryDetails)}
-              style={{ marginBottom: "10px" }}
-            >
-              {showQueryDetails ? "Hide Query Details" : "Query Details"}
-            </button>
+            {currentUser && (
+              <button
+                onClick={() => setShowQueryDetails(!showQueryDetails)}
+                style={{ marginBottom: "10px" }}
+              >
+                {showQueryDetails ? "Hide Query Details" : "Query Details"}
+              </button>
+            )}
 
             {/* Conditionally show query details */}
             {showQueryDetails && (
@@ -258,7 +262,8 @@ export function NewsReader() {
                   <strong>Query:</strong> {queryFormObject.q || "(none)"}
                 </p>
                 <p>
-                  <strong>Language:</strong> {queryFormObject.language || "(default)"}
+                  <strong>Language:</strong>{" "}
+                  {queryFormObject.language || "(default)"}
                 </p>
                 <p>
                   <strong>Page Size:</strong>{" "}
@@ -267,7 +272,7 @@ export function NewsReader() {
               </div>
             )}
 
-            <Articles query={query} data={data} />
+            <Articles query={query} data={data} currentUser={currentUser} />
           </div>
         </section>
       </div>
