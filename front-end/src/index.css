@@ -84,7 +84,8 @@ code {
   top: 0;
   background-color: #007bff; /* match your title bg color */
   padding: 10px;
-  z-index: 10; /* ensure it stays on top */
+  z-index: 10;
+  border-bottom: 1px solid #4a5966; /* ensure it stays on top */
 }
 
 /* Text styles */

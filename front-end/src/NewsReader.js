@@ -64,6 +64,15 @@ export function NewsReader() {
     }
   }
 
+  // Handler to delete a saved query
+  function onDeleteSavedQuery(queryToDelete) {
+    const filteredQueries = savedQueries.filter(
+      (q) => q.queryName !== queryToDelete.queryName
+    );
+    setSavedQueries(filteredQueries);
+    saveQueryList(filteredQueries); // persist deletion to backend
+  }
+
   // Login/logout function
   async function login() {
     if (currentUser) {
@@ -186,6 +195,7 @@ export function NewsReader() {
               savedQueries={savedQueries}
               selectedQueryName={query.queryName}
               onQuerySelect={onSavedQuerySelect}
+              onDeleteQuery={onDeleteSavedQuery}
             />
           </div>
 
