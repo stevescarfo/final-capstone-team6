@@ -1,11 +1,10 @@
 export function Articles(params) {
     let articles = (params.data.articles)?params.data.articles:[];
-    let queryName = (params.query.queryName)?params.query.queryName:"na";
-    let articleCount = (params.data.totalResults)?params.data.totalResults:0;
+    //let queryName = (params.query.queryName)?params.query.queryName:"na";
+   // let articleCount = (params.data.totalResults)?params.data.totalResults:0;
     return (
       <div>
-        Query: {queryName}
-        <br/>Count: {articleCount}
+    
         <ol >{
             articles.map((item, idx) => {
               if(item){

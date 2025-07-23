@@ -23,7 +23,10 @@ export function NewsReader() {
   const [currentUser, setCurrentUser] = useState(null);
   const [credentials, setCredentials] = useState({ user: "", password: "" });
 
-  //adding canned queries
+  // Query Details visibility state
+  const [showQueryDetails, setShowQueryDetails] = useState(false);
+
+  // Adding canned queries
   const cannedQueries = [
     { queryName: "Top Headlines", q: "headlines" },
     { queryName: "Technology News", q: "technology" },
@@ -190,15 +193,17 @@ export function NewsReader() {
           />
 
           {/* Query Form */}
-          <div className="box">
-            <h2 className="section-title">Query Form</h2>
-            <QueryForm
-              currentUser={currentUser}
-              setFormObject={setQueryFormObject}
-              formObject={queryFormObject}
-              submitToParent={onFormSubmit}
-            />
-          </div>
+          {currentUser && (
+            <div className="box">
+              <h2 className="section-title">Query Form</h2>
+              <QueryForm
+                currentUser={currentUser}
+                setFormObject={setQueryFormObject}
+                formObject={queryFormObject}
+                submitToParent={onFormSubmit}
+              />
+            </div>
+          )}
 
           {/* Saved Queries */}
           <div className="box queries-container">
@@ -228,6 +233,40 @@ export function NewsReader() {
             <p>
               <strong>Query:</strong> {query.q || "(no query)"}
             </p>
+
+            {/* Query Details toggle button */}
+            <button
+              onClick={() => setShowQueryDetails(!showQueryDetails)}
+              style={{ marginBottom: "10px" }}
+            >
+              {showQueryDetails ? "Hide Query Details" : "Query Details"}
+            </button>
+
+            {/* Conditionally show query details */}
+            {showQueryDetails && (
+              <div
+                style={{
+                  backgroundColor: "#f0f0f0ff",
+                  padding: "5px",
+                  borderRadius: "4px",
+                  marginBottom: "5px",
+                  fontSize: "14px",
+                  lineHeight: "1.0",
+                }}
+              >
+                <p>
+                  <strong>Query:</strong> {queryFormObject.q || "(none)"}
+                </p>
+                <p>
+                  <strong>Language:</strong> {queryFormObject.language || "(default)"}
+                </p>
+                <p>
+                  <strong>Page Size:</strong>{" "}
+                  {queryFormObject.pageSize ?? "(default)"}
+                </p>
+              </div>
+            )}
+
             <Articles query={query} data={data} />
           </div>
         </section>
