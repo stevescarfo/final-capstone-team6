@@ -42,14 +42,15 @@ code {
 
 .parent {
   display: flex;
-  flex-direction: row;
   gap: 10px;
   flex-wrap: wrap;
+  justify-content: center;
+  margin: 40px;
 }
 
 .box {
   border: 1px solid black;
-  flex: 1;
+  flex: 1 1 300px; /* Flex-grow, flex-shrink, flex-basis */
   padding: 5px;
   max-width: 300px;
   font-size: small;

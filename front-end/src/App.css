@@ -17,6 +17,12 @@ p{
 header{
   font-weight:bold;
   text-align: center;
-  font-size: large;
-  background-color: bisque;
+  font-size: x-large;
+  font-color: #996644; /* Bootstrap primary color */
+}
+.merniac{
+  font-weight:bold;
+  text-align: center;
+  font-size: x-large;
+  font-color: #1726ad; /* Bootstrap primary color */
 }

@@ -7,14 +7,14 @@ export function LoginForm(params) {
     params.setCredentials(newCredentials);
   };
 
-  const titleStyle = {
-    backgroundColor: "#007BFF",
-    color: "white",
-    padding: "10px",
-    textAlign: "center",
-    marginBottom: "10px",
-    borderRadius: "4px"
-  };
+  // const titleStyle = {
+  //   backgroundColor: "#007BFF",
+  //   color: "white",
+  //   padding: "10px",
+  //   textAlign: "center",
+  //   marginBottom: "10px",
+  //   borderRadius: "4px"
+  // };
 
   // Container for inputs and button, with button pushed to the right
   const formRowStyle = {
@@ -37,8 +37,8 @@ export function LoginForm(params) {
   };
 
   return (
-    <div className="box" style={{ maxWidth: "350px", width: "100%", marginLeft: "60px" }}>
-      <h2 style={titleStyle}>User Login</h2>
+    <div className="box" >
+      <h2 className= "section-title">User Login</h2>
       <form style={formRowStyle}>
         <div style={inputGroupStyle}>
           <label htmlFor="user">User:</label>
