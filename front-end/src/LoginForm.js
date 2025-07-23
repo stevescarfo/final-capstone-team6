@@ -37,7 +37,7 @@ export function LoginForm(params) {
   };
 
   return (
-    <div className="box" style={{ maxWidth: "400px", width: "100%" }}>
+    <div className="box" style={{ maxWidth: "350px", width: "100%", marginLeft: "60px" }}>
       <h2 style={titleStyle}>User Login</h2>
       <form style={formRowStyle}>
         <div style={inputGroupStyle}>

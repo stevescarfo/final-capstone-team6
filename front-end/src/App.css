@@ -9,6 +9,14 @@ ol{
   border: 1px solid #ddd; /* Optional border for styling */
 }
 
-header,p{
+p{
   font-weight:bold;
+  text-align: center;
+}
+
+header{
+  font-weight:bold;
+  text-align: center;
+  font-size: large;
+  background-color: bisque;
 }
