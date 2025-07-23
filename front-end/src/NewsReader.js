@@ -1,9 +1,9 @@
-import { QueryForm } from './QueryForm';
-import { Articles } from './Articles';
-import { SavedQueries } from './SavedQueries';
-import { LoginForm } from './LoginForm';
-import { useState, useEffect } from 'react';
-import { exampleQuery, exampleData } from './data';
+import { QueryForm } from "./QueryForm";
+import { Articles } from "./Articles";
+import { SavedQueries } from "./SavedQueries";
+import { LoginForm } from "./LoginForm";
+import { useState, useEffect } from "react";
+import { exampleQuery, exampleData } from "./data";
 
 export function NewsReader() {
   // Query and news data state
@@ -43,7 +43,7 @@ export function NewsReader() {
         setSavedQueries(data);
       }
     } catch (error) {
-      console.error('Error fetching saved queries:', error);
+      console.error("Error fetching saved queries:", error);
     }
   }
 
@@ -51,8 +51,8 @@ export function NewsReader() {
   async function saveQueryList(savedQueries) {
     try {
       const response = await fetch(urlQueries, {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
         body: JSON.stringify(savedQueries),
       });
       if (!response.ok) {
@@ -60,7 +60,7 @@ export function NewsReader() {
       }
       console.log("savedQueries array has been persisted:");
     } catch (error) {
-      console.error('Error saving saved queries:', error);
+      console.error("Error saving saved queries:", error);
     }
   }
 
@@ -75,9 +75,9 @@ export function NewsReader() {
         const response = await fetch(urlUsersAuth, {
           method: "POST",
           headers: {
-            "Content-Type": "application/json"
+            "Content-Type": "application/json",
           },
-          body: JSON.stringify(credentials)
+          body: JSON.stringify(credentials),
         });
 
         if (response.status === 200) {
@@ -111,11 +111,15 @@ export function NewsReader() {
       return;
     }
     if (savedQueries.length >= 3 && currentUserMatches("guest")) {
-      alert("guest users cannot submit new queries once saved query count is 3 or greater!");
+      alert(
+        "guest users cannot submit new queries once saved query count is 3 or greater!"
+      );
       return;
     }
 
-    const filteredQueries = savedQueries.filter(q => q.queryName !== queryObject.queryName);
+    const filteredQueries = savedQueries.filter(
+      (q) => q.queryName !== queryObject.queryName
+    );
     const newSavedQueries = [queryObject, ...filteredQueries];
 
     console.log(JSON.stringify(newSavedQueries));
@@ -156,7 +160,6 @@ export function NewsReader() {
     <div>
       <div>
         <section className="parent">
-
           {/* Login form component */}
           <LoginForm
             currentUser={currentUser}
@@ -187,12 +190,13 @@ export function NewsReader() {
           </div>
 
           {/* Articles List */}
-          <div className="box">
-            <h2 className="section-title">Articles List</h2>
-            <p><strong>Query:</strong> {query.q || "(no query)"}</p>
+          <div className="box articles-container">
+            <h2 className="section-title sticky-title">Articles List</h2>
+            <p>
+              <strong>Query:</strong> {query.q || "(no query)"}
+            </p>
             <Articles query={query} data={data} />
           </div>
-
         </section>
       </div>
     </div>

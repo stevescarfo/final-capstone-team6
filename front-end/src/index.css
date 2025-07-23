@@ -1,13 +1,15 @@
 /* Base styles */
 
-*, *::before, *::after {
+*,
+*::before,
+*::after {
   box-sizing: border-box;
 }
 
 body {
   margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen",
+    "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
@@ -22,7 +24,7 @@ ol {
 }
 
 code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
+  font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
     monospace;
 }
 
@@ -60,8 +62,14 @@ code {
 
 /* Section title styling - matches login form title */
 
+.articles-container {
+  height: 300px; /* or whatever fixed height you want */
+  overflow-y: auto; /* vertical scrollbar when content overflows */
+  overflow-x: hidden; /* optionally hide horizontal scrollbar */
+}
+
 .section-title {
-  background-color: #007BFF; /* Bootstrap primary blue */
+  background-color: #007bff; /* Bootstrap primary blue */
   color: white;
   padding: 10px;
   text-align: center;
@@ -69,6 +77,14 @@ code {
   border-radius: 4px;
   font-weight: bold;
   font-size: 1.25rem;
+}
+
+.sticky-title {
+  position: sticky;
+  top: 0;
+  background-color: #007bff; /* match your title bg color */
+  padding: 10px;
+  z-index: 10; /* ensure it stays on top */
 }
 
 /* Text styles */
