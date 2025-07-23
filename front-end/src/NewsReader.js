@@ -247,7 +247,7 @@ export function NewsReader() {
             )}
 
             {/* Conditionally show query details */}
-            {showQueryDetails && (
+            {currentUser && showQueryDetails && (
               <div
                 style={{
                   backgroundColor: "#f0f0f0ff",
