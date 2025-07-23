@@ -201,8 +201,8 @@ export function NewsReader() {
           </div>
 
           {/* Saved Queries */}
-          <div className="box">
-            <h2 className="section-title">Saved Queries</h2>
+          <div className="box queries-container">
+            <h2 className="section-title sticky-title">Saved Queries</h2>
             {currentUser ? (
               <SavedQueries
                 savedQueries={savedQueries}

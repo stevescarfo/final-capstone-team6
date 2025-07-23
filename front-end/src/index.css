@@ -68,6 +68,12 @@ code {
   overflow-x: hidden; /* optionally hide horizontal scrollbar */
 }
 
+.queries-container {
+  height: 300px; /* or whatever fixed height you want */
+  overflow-y: auto; /* vertical scrollbar when content overflows */
+  overflow-x: hidden; /* optionally hide horizontal scrollbar */
+}
+
 .section-title {
   background-color: #007bff; /* Bootstrap primary blue */
   color: white;
