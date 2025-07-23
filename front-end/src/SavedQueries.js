@@ -34,13 +34,17 @@ export function SavedQueries(params) {
           }}
         >
           <span>{trimTitle + ': "' + item.q + '"'}</span>
-          <button
-            onClick={(e) => onDeleteClick(e, item)}
-            style={{ marginLeft: "10px", cursor: "pointer" }}
-            aria-label={`Delete saved query ${item.queryName}`}
-          >
-            Delete
-          </button>
+
+          {/* Render delete button only if user is logged in */}
+          {params.currentUser && (
+            <button
+              onClick={(e) => onDeleteClick(e, item)}
+              style={{ marginLeft: "10px", cursor: "pointer" }}
+              aria-label={`Delete saved query ${item.queryName}`}
+            >
+              Delete
+            </button>
+          )}
         </li>
       );
     });

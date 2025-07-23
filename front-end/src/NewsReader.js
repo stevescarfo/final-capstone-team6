@@ -23,6 +23,13 @@ export function NewsReader() {
   const [currentUser, setCurrentUser] = useState(null);
   const [credentials, setCredentials] = useState({ user: "", password: "" });
 
+  //adding canned queries
+  const cannedQueries = [
+    { queryName: "Top Headlines", q: "headlines" },
+    { queryName: "Technology News", q: "technology" },
+    { queryName: "Sports Highlights", q: "sports" },
+  ];
+
   // Fetch news when query changes
   useEffect(() => {
     getNews(query);
@@ -196,14 +203,23 @@ export function NewsReader() {
           {/* Saved Queries */}
           <div className="box">
             <h2 className="section-title">Saved Queries</h2>
-            <SavedQueries
-              savedQueries={savedQueries}
-              selectedQueryName={query.queryName}
-              onQuerySelect={onSavedQuerySelect}
-              onDeleteQuery={onDeleteSavedQuery}
-              onResetQueries={onResetQueries}
-              currentUser={currentUser}
-            />
+            {currentUser ? (
+              <SavedQueries
+                savedQueries={savedQueries}
+                selectedQueryName={query.queryName}
+                onQuerySelect={onSavedQuerySelect}
+                onDeleteQuery={onDeleteSavedQuery}
+                onResetQueries={onResetQueries}
+                currentUser={currentUser}
+              />
+            ) : (
+              <SavedQueries
+                savedQueries={cannedQueries}
+                selectedQueryName={query.queryName}
+                onQuerySelect={onSavedQuerySelect}
+                // No delete/reset handlers since canned queries cannot be modified
+              />
+            )}
           </div>
 
           {/* Articles List */}
