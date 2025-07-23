@@ -73,6 +73,11 @@ export function NewsReader() {
     saveQueryList(filteredQueries); // persist deletion to backend
   }
 
+  function onResetQueries() {
+    setSavedQueries([]);
+    saveQueryList([]); // persist empty list to backend
+  }
+
   // Login/logout function
   async function login() {
     if (currentUser) {
@@ -196,6 +201,8 @@ export function NewsReader() {
               selectedQueryName={query.queryName}
               onQuerySelect={onSavedQuerySelect}
               onDeleteQuery={onDeleteSavedQuery}
+              onResetQueries={onResetQueries}
+              currentUser={currentUser}
             />
           </div>
 
