@@ -80,11 +80,17 @@ export function NewsReader() {
       (q) => q.queryName !== queryToDelete.queryName
     );
     setSavedQueries(filteredQueries);
+    if (query.queryName === queryToDelete.queryName) {
+      setData({});
+      setQueryFormObject({});
+      query.queryName = "";
+    }
     saveQueryList(filteredQueries); // persist deletion to backend
   }
 
   function onResetQueries() {
     setSavedQueries([]);
+    setData({});
     saveQueryList([]); // persist empty list to backend
   }
 
@@ -235,7 +241,7 @@ export function NewsReader() {
             <div className="articles-container">
               {currentUser && (
                 <p>
-                  <strong>Query:</strong> {query.q || "(no query)"}
+                  <strong>Query:</strong> {query.queryName || "(no query)"}
                 </p>
               )}
 
@@ -273,13 +279,12 @@ export function NewsReader() {
                     {queryFormObject.pageSize ?? "(default)"}
                   </p>
                   <p>
-                    <strong>Count:</strong>{" "}
-                    {data.totalResults ?? "(default)"}
+                    <strong>Count:</strong> {data.totalResults ?? "(default)"}
                   </p>
                 </div>
               )}
-            
-            <Articles query={query} data={data} currentUser={currentUser} />
+
+              <Articles query={query} data={data} currentUser={currentUser} />
             </div>
           </div>
         </section>
