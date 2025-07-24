@@ -272,6 +272,10 @@ export function NewsReader() {
                     <strong>Page Size:</strong>{" "}
                     {queryFormObject.pageSize ?? "(default)"}
                   </p>
+                  <p>
+                    <strong>Count:</strong>{" "}
+                    {data.totalResults ?? "(default)"}
+                  </p>
                 </div>
               )}
             

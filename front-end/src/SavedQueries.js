@@ -72,11 +72,6 @@ export function SavedQueries(params) {
                 <strong>Page Size:</strong> {item.pageSize}
               </div>
             )}
-            {item.totalResults && (
-              <div>
-                <strong>Articles Returned:</strong> {item.totalResults}
-              </div>
-            )}
             {/* Add more properties here if needed */}
           </div>
 
