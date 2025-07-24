@@ -1,4 +1,4 @@
-ol{
+ol {
   font-size: small;
 }
 
@@ -9,20 +9,21 @@ ol{
   border: 1px solid #ddd; /* Optional border for styling */
 }
 
-p{
-  font-weight:bold;
+p {
+  font-weight: bold;
   text-align: center;
 }
 
-header{
-  font-weight:bold;
+header {
+  font-weight: bold;
   text-align: center;
   font-size: x-large;
-  font-color: #996644; /* Bootstrap primary color */
+  color: #996644;
 }
-.merniac{
-  font-weight:bold;
+.merniac {
+  font-weight: bold;
   text-align: center;
   font-size: x-large;
-  font-color: #1726ad; /* Bootstrap primary color */
+  color: #1726ad;
+  margin: 20px;
 }

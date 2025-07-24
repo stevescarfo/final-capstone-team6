@@ -15,6 +15,16 @@ body {
   -moz-osx-font-smoothing: grayscale;
 }
 
+button {
+  padding: 4px 8px;
+  border-radius: 10px;
+}
+
+.submit-button {
+  padding: 4px 8px;
+  border-radius: 10px;
+}
+
 header p {
   font-size: large;
 }
@@ -54,6 +64,7 @@ code {
   padding: 5px;
   max-width: 300px;
   font-size: small;
+  background-color: #b6cde0;
 }
 
 .box span {
