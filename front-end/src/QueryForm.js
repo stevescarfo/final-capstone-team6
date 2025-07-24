@@ -1,4 +1,5 @@
 import React from "react";
+import "./QueryForm.css";  // Import the CSS file for styling
 
 export function QueryForm(params) {
   // Handles changes to any input/select field
@@ -8,7 +9,7 @@ export function QueryForm(params) {
     params.setFormObject(newFormObject);
   };
 
- function onSubmitClick(event) {
+  const onSubmitClick = (event) => {
     event.preventDefault();
     if (!params.formObject.queryName) {
       alert("please provide a name for the query!");
@@ -19,25 +20,17 @@ export function QueryForm(params) {
       return;
     }
     params.submitToParent(params.formObject);
-  }
+  };
 
   // Checks if current user is admin
   function currentUserIsAdmin() {
-    if (params.currentUser) {
-      if (params.currentUser.user) {
-        if (params.currentUser.user === "admin") {
-          return true;
-        }
-      }
-    }
-    return false;
+    return params.currentUser?.user === "admin";
   }
 
   return (
-    <form>
-      {/* Example input field for query 'q' */}
-      <div>
-        <label htmlFor="queryName">Query Name: </label>
+    <form onSubmit={onSubmitClick}>
+      <div className="query-form-group">
+        <label htmlFor="queryName">Query Name:</label>
         <input
           type="text"
           id="queryName"
@@ -46,24 +39,23 @@ export function QueryForm(params) {
           onChange={handleChange}
         />
       </div>
- <div>
-          <label htmlFor="q">Query Text: </label>
-          <input
-            type="text"
-            size={10}
-            id="q"
-            name="q"
-            value={params.formObject.q}
-            onChange={handleChange}
-          />
-        </div>
+      <div className="query-form-group">
+        <label htmlFor="q">Query Text:</label>
+        <input
+          type="text"
+          id="q"
+          name="q"
+          value={params.formObject.q}
+          onChange={handleChange}
+        />
+      </div>
+
       {/* Admin-only extra fields */}
       <div
-        className={currentUserIsAdmin() ? "visible" : "hidden"}
-        style={{ border: "solid black 1px", padding: "8px", marginTop: "10px" }}
+        className={currentUserIsAdmin() ? "visible admin-extra-fields" : "hidden"}
       >
-        <div>
-          <label htmlFor="language">Language: </label>
+        <div className="query-form-group">
+          <label htmlFor="language">Language:</label>
           <select
             id="language"
             name="language"
@@ -78,9 +70,9 @@ export function QueryForm(params) {
             {/* Add more language options as needed */}
           </select>
         </div>
-       
-        <div style={{ marginTop: "8px" }}>
-          <label htmlFor="pageSize">Page Size: </label>
+
+        <div className="query-form-group">
+          <label htmlFor="pageSize">Page Size:</label>
           <input
             type="number"
             id="pageSize"
@@ -93,10 +85,9 @@ export function QueryForm(params) {
         </div>
       </div>
 
-        <span style={{ display: "block" }}>
-          <input type="button" value="Submit" onClick={onSubmitClick} className="submit-button"/>
-        </span>
-      {/* Submit button or other controls can be added here if needed */}
+      <div className="submit-button-container">
+        <input type="submit" value="Submit" className="submit-button" />
+      </div>
     </form>
   );
 }
