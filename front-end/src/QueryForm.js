@@ -1,5 +1,5 @@
 import React from "react";
-import "./QueryForm.css";  // Import the CSS file for styling
+import "./QueryForm.css"; // Make sure this CSS file exists with the styles provided
 
 export function QueryForm(params) {
   // Handles changes to any input/select field
@@ -39,6 +39,7 @@ export function QueryForm(params) {
           onChange={handleChange}
         />
       </div>
+
       <div className="query-form-group">
         <label htmlFor="q">Query Text:</label>
         <input
