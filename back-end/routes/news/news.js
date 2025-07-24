@@ -12,8 +12,8 @@ if (!apiKey) {
   process.exit(0);
 }
 
-// Base URL for newsapi top headlines endpoint
-const baseUrlTop = "https://newsapi.org/v2/top-headlines";
+// Base URL for newsapi everything endpoint
+const baseUrlTop = "https://newsapi.org/v2/everything";
 
 // Function to add apiKey to the query object
 function addApiKey(queryObject) {

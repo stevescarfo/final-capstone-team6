@@ -206,17 +206,19 @@ export function NewsReader() {
           )}
 
           {/* Saved Queries */}
-          <div className="box queries-container">
+          <div className="box">
             <h2 className="section-title sticky-title">Saved Queries</h2>
             {currentUser ? (
-              <SavedQueries
-                savedQueries={savedQueries}
-                selectedQueryName={query.queryName}
-                onQuerySelect={onSavedQuerySelect}
-                onDeleteQuery={onDeleteSavedQuery}
-                onResetQueries={onResetQueries}
-                currentUser={currentUser}
-              />
+              <div className="queries-container">
+                <SavedQueries
+                  savedQueries={savedQueries}
+                  selectedQueryName={query.queryName}
+                  onQuerySelect={onSavedQuerySelect}
+                  onDeleteQuery={onDeleteSavedQuery}
+                  onResetQueries={onResetQueries}
+                  currentUser={currentUser}
+                />
+              </div>
             ) : (
               <SavedQueries
                 savedQueries={cannedQueries}
@@ -228,51 +230,53 @@ export function NewsReader() {
           </div>
 
           {/* Articles List */}
-          <div className="box articles-container">
+          <div className="box">
             <h2 className="section-title sticky-title">Articles List</h2>
-            {currentUser && (
-            <p>
-              <strong>Query:</strong> {query.q || "(no query)"}
-            </p>
-            )}
-
-            {/* Query Details toggle button */}
-            {currentUser && (
-              <button
-                onClick={() => setShowQueryDetails(!showQueryDetails)}
-                style={{ marginBottom: "10px" }}
-              >
-                {showQueryDetails ? "Hide Query Details" : "Query Details"}
-              </button>
-            )}
-
-            {/* Conditionally show query details */}
-            {currentUser && showQueryDetails && (
-              <div
-                style={{
-                  backgroundColor: "#f0f0f0ff",
-                  padding: "5px",
-                  borderRadius: "4px",
-                  marginBottom: "5px",
-                  fontSize: "14px",
-                  lineHeight: "1.0",
-                }}
-              >
+            <div className="articles-container">
+              {currentUser && (
                 <p>
-                  <strong>Query:</strong> {queryFormObject.q || "(none)"}
+                  <strong>Query:</strong> {query.q || "(no query)"}
                 </p>
-                <p>
-                  <strong>Language:</strong>{" "}
-                  {queryFormObject.language || "(default)"}
-                </p>
-                <p>
-                  <strong>Page Size:</strong>{" "}
-                  {queryFormObject.pageSize ?? "(default)"}
-                </p>
-              </div>
-            )}
+              )}
 
+              {/* Query Details toggle button */}
+              {currentUser && (
+                <button
+                  onClick={() => setShowQueryDetails(!showQueryDetails)}
+                  style={{ marginBottom: "10px" }}
+                >
+                  {showQueryDetails ? "Hide Query Details" : "Query Details"}
+                </button>
+              )}
+
+              {/* Conditionally show query details */}
+              {currentUser && showQueryDetails && (
+                <div
+                  style={{
+                    backgroundColor: "#f0f0f0ff",
+                    padding: "5px",
+                    borderRadius: "4px",
+                    marginBottom: "5px",
+                    fontSize: "14px",
+                    lineHeight: "1.0",
+                  }}
+                >
+                  <p>
+                    <strong>Query:</strong> {queryFormObject.q || "(none)"}
+                  </p>
+                  <p>
+                    <strong>Language:</strong>{" "}
+                    {queryFormObject.language || "(default)"}
+                  </p>
+                  <p>
+                    <strong>Page Size:</strong>{" "}
+                    {queryFormObject.pageSize ?? "(default)"}
+                  </p>
+                </div>
+              )}
+            
             <Articles query={query} data={data} currentUser={currentUser} />
+            </div>
           </div>
         </section>
       </div>

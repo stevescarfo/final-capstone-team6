@@ -4,6 +4,12 @@ export function Articles(params) {
     return null; // or you could return a message like <div>Please log in to see articles.</div>
   }
 
+  //const articles = params.data.articles ? params.data.articles : [];
+  //const queryName = params.query.queryName ? params.query.queryName : "na";
+  let articleCount = (params.data.totalResults)?params.data.totalResults:0;
+  //const articleCount = params.data.totalResults ? params.data.totalResults : 0;
+  console.log(articleCount);
+
   let articles = params.data.articles ? params.data.articles : [];
 
   return (

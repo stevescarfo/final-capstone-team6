@@ -75,15 +75,17 @@ code {
 /* Section title styling - matches login form title */
 
 .articles-container {
-  height: 300px; /* or whatever fixed height you want */
+  height: 200px; /* or whatever fixed height you want */
   overflow-y: auto; /* vertical scrollbar when content overflows */
   overflow-x: hidden; /* optionally hide horizontal scrollbar */
+  scroll-margin-top: 60px;
 }
 
 .queries-container {
-  height: 300px; /* or whatever fixed height you want */
+  height: 200px; /* or whatever fixed height you want */
   overflow-y: auto; /* vertical scrollbar when content overflows */
   overflow-x: hidden; /* optionally hide horizontal scrollbar */
+  scroll-margin-top: 60px;
 }
 
 .section-title {
@@ -101,7 +103,7 @@ code {
   position: sticky;
   top: 0;
   background-color: #007bff; /* match your title bg color */
-  padding: 10px;
+  padding: 10px 0;
   z-index: 10;
   border-bottom: 1px solid #4a5966; /* ensure it stays on top */
 }
