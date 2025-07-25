@@ -82,8 +82,13 @@ export function NewsReader() {
     setSavedQueries(filteredQueries);
     if (query.queryName === queryToDelete.queryName) {
       setData({});
-      setQueryFormObject({});
-      query.queryName = "";
+      setQueryFormObject({
+        queryName: "",
+        q: "",
+        language: "",
+        pageSize: 5,
+      });
+      setQuery({});
     }
     saveQueryList(filteredQueries); // persist deletion to backend
   }
@@ -91,8 +96,13 @@ export function NewsReader() {
   function onResetQueries() {
     setSavedQueries([]);
     setData({});
-    setQueryFormObject({});
-    query.queryName = "";
+    setQueryFormObject({
+      queryName: "",
+      q: "",
+      language: "",
+      pageSize: 5,
+    });
+    setQuery({});
     saveQueryList([]); // persist empty list to backend
   }
 
