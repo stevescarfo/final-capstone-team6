@@ -261,7 +261,7 @@ export function NewsReader() {
               {currentUser && (
                 <button
                   onClick={() => setShowQueryDetails(!showQueryDetails)}
-                  style={{ marginBottom: "10px" }}
+                  style={{ marginBottom: "10px", cursor: "pointer" }}
                 >
                   {showQueryDetails ? "Hide Query Details" : "Query Details"}
                 </button>
