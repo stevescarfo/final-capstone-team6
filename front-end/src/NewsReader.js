@@ -91,6 +91,8 @@ export function NewsReader() {
   function onResetQueries() {
     setSavedQueries([]);
     setData({});
+    setQueryFormObject({});
+    query.queryName = "";
     saveQueryList([]); // persist empty list to backend
   }
 

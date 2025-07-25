@@ -53,7 +53,9 @@ export function QueryForm(params) {
 
       {/* Admin-only extra fields */}
       <div
-        className={currentUserIsAdmin() ? "visible admin-extra-fields" : "hidden"}
+        className={
+          currentUserIsAdmin() ? "visible admin-extra-fields" : "hidden"
+        }
       >
         <div className="query-form-group">
           <label htmlFor="language">Language:</label>
@@ -80,7 +82,7 @@ export function QueryForm(params) {
             name="pageSize"
             min={1}
             max={100}
-            value={params.formObject.pageSize || ""}
+            value={params.formObject.pageSize || "5"}
             onChange={handleChange}
           />
         </div>

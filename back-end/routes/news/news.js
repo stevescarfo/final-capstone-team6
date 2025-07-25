@@ -64,14 +64,13 @@ router.get("/", async (req, res) => {
 });
 
 // POST /news - accepts queryObject from request body
-router.post('/', async (req, res) => {
-  const query = req.body;   // get query object from POST request body
+router.post("/", async (req, res) => {
+  const query = req.body; // get query object from POST request body
   let queryObjectWithApiKey = addApiKey(query);
   let url = createUrlFromQueryObject(queryObjectWithApiKey);
   let newsArticles = await fetchData(url);
   res.send(newsArticles);
 });
-
 
 // Export the router to be used in the main app
 export default router;

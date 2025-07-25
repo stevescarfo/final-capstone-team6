@@ -1,4 +1,4 @@
- /* Layout for the form row: inputs and button aligned horizontally */
+/* Layout for the form row: inputs and button aligned horizontally */
 .login-form-row {
   display: flex;
   align-items: center;
@@ -11,6 +11,13 @@
   display: flex;
   flex-direction: column;
   min-width: 120px;
+}
+
+.login-input-group input {
+  display: flex;
+  flex-direction: column;
+  min-width: 120px;
+  padding: 4px 4px;
 }
 
 /* Style for labels inside login input groups */
@@ -27,7 +34,7 @@
 
 /* Style for the login/logout button */
 .login-button-container button {
-  background-color: #007BFF; /* Blue */
+  background-color: #007bff; /* Blue */
   border: none;
   color: white;
   padding: 8px 16px;
@@ -54,5 +61,3 @@
   /* Optional: fix min-width to keep consistent alignment */
   min-width: 150px;
 }
-
-
