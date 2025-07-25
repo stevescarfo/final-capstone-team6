@@ -98,24 +98,39 @@ export function SavedQueries(params) {
 
   return (
     <div>
-      <ul style={{ listStyleType: "none", paddingLeft: 0, margin: 0 }}>
-        {params.savedQueries && params.savedQueries.length > 0 ? (
-          getQueries()
-        ) : (
-          <li>No Saved Queries, Yet!</li>
-        )}
-      </ul>
+      <div
+        style={{
+          maxHeight: "150px", // or your preferred height
+          overflowY: "auto",
+          overflowX: "hidden",
+          flex: "1 1 300px",
+          scrollMarginTop: "60px",
+          border: "1px solid #ddd",
+          padding: "5px",
+          marginBottom: "10px",
+        }}
+      >
+        <ul style={{ listStyleType: "none", paddingLeft: 0, margin: 0 }}>
+          {params.savedQueries && params.savedQueries.length > 0 ? (
+            getQueries()
+          ) : (
+            <li>No Saved Queries, Yet!</li>
+          )}
+        </ul>
+      </div>
 
-      {/* Show Reset button only if user is logged in */}
-      {params.currentUser && (
-        <button
-          onClick={onResetClick}
-          style={{ marginTop: "10px", cursor: "pointer" }}
-          aria-label="Reset all saved queries"
-        >
-          Delete All
-        </button>
-      )}
+      <div>
+        {/* Show Reset button only if user is logged in */}
+        {params.currentUser && (
+          <button
+            onClick={onResetClick}
+            style={{ marginTop: "10px", cursor: "pointer" }}
+            aria-label="Reset all saved queries"
+          >
+            Delete All
+          </button>
+        )}
+      </div>
     </div>
   );
 }

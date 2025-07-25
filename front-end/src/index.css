@@ -84,8 +84,7 @@ code {
 
 .queries-container {
   height: 200px; /* or whatever fixed height you want */
-  overflow-y: auto; /* vertical scrollbar when content overflows */
-  overflow-x: hidden; /* optionally hide horizontal scrollbar */
+
   scroll-margin-top: 60px;
 }
 
