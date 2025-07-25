@@ -37,7 +37,7 @@ export function LoginForm(params) {
         </div>
 
         <div className="login-action-container">
-          <button type="button" className="submit-button" onClick={params.login}>
+          <button type="submit" className="submit-button" onClick={params.login}>
             {params.currentUser ? "Logout" : "Login"}
           </button>
           <div className="login-status">
