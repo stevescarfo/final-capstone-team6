@@ -1,7 +1,7 @@
 import { QueryForm } from "./QueryForm";
 import { Articles } from "./Articles";
 import { SavedQueries } from "./SavedQueries";
-import { LoginForm } from "./LoginForm";
+import { LoginForm } from "./LoginForm.js";
 import { useState, useEffect } from "react";
 import { exampleQuery, exampleData } from "./data";
 

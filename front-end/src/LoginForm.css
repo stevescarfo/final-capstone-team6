@@ -1,0 +1,58 @@
+ /* Layout for the form row: inputs and button aligned horizontally */
+.login-form-row {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  flex-wrap: wrap;
+}
+
+/* Group each label and input vertically */
+.login-input-group {
+  display: flex;
+  flex-direction: column;
+  min-width: 120px;
+}
+
+/* Style for labels inside login input groups */
+.login-input-group label {
+  font-weight: bold;
+  margin-bottom: 4px;
+  text-align: left;
+}
+
+/* Push the login/logout button to the right */
+.login-button-container {
+  margin-left: auto;
+}
+
+/* Style for the login/logout button */
+.login-button-container button {
+  background-color: #007BFF; /* Blue */
+  border: none;
+  color: white;
+  padding: 8px 16px;
+  font-size: 1rem;
+  cursor: pointer;
+  border-radius: 4px;
+  transition: background-color 0.3s ease;
+}
+
+.login-button-container button:hover {
+  background-color: #0056b3; /* Darker blue on hover */
+}
+
+.login-action-container {
+  display: flex;
+  align-items: center;
+  gap: 20px; /* Space between button and status */
+  margin-top: 10px;
+}
+
+.login-status {
+  font-weight: bold;
+  text-align: left;
+  /* Optional: fix min-width to keep consistent alignment */
+  min-width: 150px;
+}
+
+

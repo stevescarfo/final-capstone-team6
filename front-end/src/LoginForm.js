@@ -1,4 +1,5 @@
 import React from "react";
+import "./LoginForm.css"; // Make sure this CSS file exists and includes the necessary styles
 
 export function LoginForm(params) {
   const handleChange = (event) => {
@@ -7,72 +8,43 @@ export function LoginForm(params) {
     params.setCredentials(newCredentials);
   };
 
-  // const titleStyle = {
-  //   backgroundColor: "#007BFF",
-  //   color: "white",
-  //   padding: "10px",
-  //   textAlign: "center",
-  //   marginBottom: "10px",
-  //   borderRadius: "4px"
-  // };
-
-  // Container for inputs and button, with button pushed to the right
-  const formRowStyle = {
-    display: 'flex',
-    alignItems: 'center',
-    gap: '15px',
-    flexWrap: 'wrap',
-  };
-
-  // Container for labels and inputs stacked vertically
-  const inputGroupStyle = {
-    display: 'flex',
-    flexDirection: 'column',
-    minWidth: '120px'
-  };
-
-  // Button container to push button to right
-  const buttonContainerStyle = {
-    marginLeft: 'auto',
-  };
-
   return (
-    <div className="box" >
-      <h2 className= "section-title">User Login</h2>
-      <form style={formRowStyle}>
-        <div style={inputGroupStyle}>
+    <div className="box login-box">
+      <h2 className="section-title">User Login</h2>
+      <form className="login-form-row" onSubmit={(e) => e.preventDefault()}>
+        <div className="login-input-group">
           <label htmlFor="user">User:</label>
           <input
             type="text"
-            size={10}
             id="user"
             name="user"
             value={params.credentials.user}
             onChange={handleChange}
+            disabled={!!params.currentUser}
           />
         </div>
 
-        <div style={inputGroupStyle}>
+        <div className="login-input-group">
           <label htmlFor="password">Password:</label>
           <input
             type="password"
-            size={10}
             id="password"
             name="password"
             value={params.credentials.password}
             onChange={handleChange}
+            disabled={!!params.currentUser}
           />
         </div>
 
-        <div style={buttonContainerStyle}>
-          <button type="button" onClick={params.login}>
-            {(params.currentUser) ? "Logout" : "Login"}
+        <div className="login-action-container">
+          <button type="button" className="submit-button" onClick={params.login}>
+            {params.currentUser ? "Logout" : "Login"}
           </button>
+          <div className="login-status">
+            Current User: {params.currentUser ? params.currentUser.user : "not logged in"}
+          </div>
         </div>
       </form>
-      <div style={{ marginTop: '8px', fontWeight: 'bold' }}>
-        User: {(params.currentUser) ? params.currentUser.user : "not logged in"}
-      </div>
     </div>
   );
 }
